@@ -5,53 +5,45 @@
  */
 
 import React, { Component } from 'react';
+
+import { StackNavigator } from 'react-navigation';
+
 import {
   Platform,
   StyleSheet,
   Text,
+  Button,
   View
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import FirstForm from './app/FirstForm';
+import DetailView from './app/DetailView';
 
-export default class App extends Component<{}> {
+
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'React Native POC',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+      <View style={{backgroundColor: '#FFF', flex: 1}}>
+        <Text style={{padding: 20}}>Proof of concept, of the Bizagi forms in react native.</Text>
+        <Button 
+          title="Work on it!" 
+          onPress={() =>
+            navigate('FirstForm', {})
+          }
+        />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+const App = StackNavigator({
+  Home: { screen: HomeScreen },
+  FirstForm: { screen: FirstForm },
+  DetailView: { screen: DetailView }
 });
+
+export default App;

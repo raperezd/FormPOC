@@ -9,6 +9,9 @@ import {
 
 
 import BizagiGroup from './components/BizagiGroup';
+import BizagiControl from './components/BizagiControl';
+import BizagiExtendedText from './components/BizagiExtendedText';
+import BizagiGrid from './components/BizagiGrid';
 
 const styles = StyleSheet.create({
     form: {
@@ -17,44 +20,30 @@ const styles = StyleSheet.create({
 });
  
 
+                        /* <BizagiGroup collapsed={false} headerStyle={{height: 30}} headerTextStyle={{fontSize: 10, fontWeight: '300'}} headerText="SUPLIES TO REQUEST">
+                            <Text>Hi 2</Text>
+                        </BizagiGroup> */
 class FirstForm extends React.Component {
     static navigationOptions = {
-        title: 'Forma 1 POC'
+        title: 'Request office supplies'
     };
 
     render() {
         const { navigate } = this.props.navigation; 
         return ( 
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}> 
                 <ScrollView style={styles.form}>
-                    <BizagiGroup collapsed={false} headerText="Office supplies request"> 
-                        <Text>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mi iaculis, ultricies tellus nec, tincidunt lectus.
-                            Sed tempus lectus eget tristique cursus. Fusce porttitor, metus id finibus elementum, erat odio eleifend ante, non scelerisque
-                            lorem neque scelerisque elit. In euismod nisi elementum lorem pharetra, eu malesuada nulla hendrerit. In hac habitasse platea dictumst.
-                            Aliquam quis faucibus mauris. Integer eleifend erat purus, quis porttitor justo blandit non. Nulla ornare, nunc id ultrices tincidunt,
-                            mauris purus eleifend justo, sed consectetur velit neque quis metus. Ut sed volutpat mauris.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mi iaculis, ultricies tellus nec, tincidunt lectus.
-                            Sed tempus lectus eget tristique cursus. Fusce porttitor, metus id finibus elementum, erat odio eleifend ante, non scelerisque
-                            lorem neque scelerisque elit. In euismod nisi elementum lorem pharetra, eu malesuada nulla hendrerit. In hac habitasse platea dictumst.
-                            Aliquam quis faucibus mauris. Integer eleifend erat purus, quis porttitor justo blandit non. Nulla ornare, nunc id ultrices tincidunt,
-                            mauris purus eleifend justo, sed consectetur velit neque quis metus. Ut sed volutpat mauris.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mi iaculis, ultricies tellus nec, tincidunt lectus.
-                            Sed tempus lectus eget tristique cursus. Fusce porttitor, metus id finibus elementum, erat odio eleifend ante, non scelerisque
-                            lorem neque scelerisque elit. In euismod nisi elementum lorem pharetra, eu malesuada nulla hendrerit. In hac habitasse platea dictumst.
-                            Aliquam quis faucibus mauris. Integer eleifend erat purus, quis porttitor justo blandit non. Nulla ornare, nunc id ultrices tincidunt,
-                            mauris purus eleifend justo, sed consectetur velit neque quis metus. Ut sed volutpat mauris.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ac mi iaculis, ultricies tellus nec, tincidunt lectus.
-                            Sed tempus lectus eget tristique cursus. Fusce porttitor, metus id finibus elementum, erat odio eleifend ante, non scelerisque
-                            lorem neque scelerisque elit. In euismod nisi elementum lorem pharetra, eu malesuada nulla hendrerit. In hac habitasse platea dictumst.
-                            Aliquam quis faucibus mauris. Integer eleifend erat purus, quis porttitor justo blandit non. Nulla ornare, nunc id ultrices tincidunt,
-                            mauris purus eleifend justo, sed consectetur velit neque quis metus. Ut sed volutpat mauris.
-                         </Text>
+                    <BizagiGroup collapsed={false} headerStyle={{height: 40}} headerTextStyle={{}} headerText="Office supplies request"> 
+                        <BizagiGrid/>
+                        <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
+                        <BizagiControl label={<Text style={{fontSize: 12, fontWeight: '600'}}>Replacement reason</Text>}>
+                            <BizagiExtendedText></BizagiExtendedText>
+                        </BizagiControl>
                     </BizagiGroup>
                 </ScrollView>
                 <View>
-                    <Button
-                        title="Datail"
+                    <Button color='#295d7b' 
+                        title="Request office supplies"
                         onPress={() =>
                             navigate('DetailView', {})
                         }

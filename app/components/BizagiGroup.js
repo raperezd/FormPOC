@@ -9,20 +9,19 @@ const styles = StyleSheet.create({
     header: {
         borderTopWidth: 0.5,
         borderBottomWidth: 0.5,
-        borderColor: '#D3D3D5',
-        backgroundColor: '#E8E8E8',
+        borderColor: '#DEDEDE',
+        backgroundColor: '#F8F8F8',
         padding: 10,
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     headerText: {
-        color: '#28A6DB',
-        fontSize: 16,
-        fontWeight: '500'
+        color: '#555555',
+        fontSize: 12,
+        fontWeight: '600'
     },
     content: {
-        backgroundColor: '#fff',
+        backgroundColor: '#FFFFFF',
     }
 });
 
@@ -40,9 +39,9 @@ class BizagiGroup extends React.Component {
         return (
             <View>
                 <TouchableHighlight onPress={this._toggleExpanded}>
-                    <View style={styles.header}>
+                    <View style={[styles.header, this.props.headerStyle]}>
                         <View>
-                            <Text style={styles.headerText}>{this.props.headerText}</Text>
+                            <Text style={[styles.headerText, this.props.headerTextStyle]}>{this.props.headerText}</Text>
                         </View>
                         <View>
                             {
@@ -54,7 +53,7 @@ class BizagiGroup extends React.Component {
                         </View>
                     </View>
                 </TouchableHighlight>
-                <Collapsible collapsed={this.state.collapsed} align="center">
+                <Collapsible collapsed={this.state.collapsed} collapsedHeight={0} align="center">
                     <View style={styles.content}>
                         {this.props.children}
                     </View>

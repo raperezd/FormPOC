@@ -35,14 +35,19 @@ class FirstForm extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={{ flex: 1 }}>
+
                 <ScrollView style={styles.form}>
-                    <BizagiGroup collapsed={false} headerStyle={{ height: 40 }} headerTextStyle={{}} headerText="Office supplies request">
-                        <BizagiGrid />
+                    <BizagiCollapsible bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
+                        <BizagiCollapsible bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
+                            <BizagiCard label="Add suplies to request." />
+                            <BizagiGrid />
+                        </BizagiCollapsible>
                         <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
                         <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>
                             <BizagiExtendedText></BizagiExtendedText>
                         </BizagiControl>
-                    </BizagiGroup>
+                    </BizagiCollapsible>
+
                 </ScrollView>
                 <View>
                     <Button color='#295d7b'

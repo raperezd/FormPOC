@@ -12,24 +12,27 @@ import {
 
 const styles = StyleSheet.create({
     card: {
-        flex:1,
-        maxHeight: 300,
-    },
-    body:{
-        flex: 1,
+        height: 60,
+        margin: 15,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: "#F8F8F8",
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: 'transparent'
     },
     icon: {
         fontSize: 25,
         color: "#2C5D79",
-        fontWeight: "normal"
+        fontWeight: "normal",
+        marginTop:5,
     },
     desc: {
         flex: 1,
         textAlign: 'center',
         color: "gray",
-        fontWeight: "normal"
+        fontWeight: "normal",
+        marginBottom:5,
     }
 });
 
@@ -41,14 +44,10 @@ class BizagiCard extends React.Component {
     }
     render() {
         return (
-            <Card style={styles.card}>
-                <CardItem>
-                    <Body style={styles.body}>
-                        <IconEt style={styles.icon} name="circle-with-plus" />
-                        <Text style={styles.desc}>{this.props.label}</Text>
-                    </Body>
-                </CardItem>
-            </Card>
+            <View style={styles.card}>
+                <IconEt style={styles.icon} name="circle-with-plus" />
+                <Text style={styles.desc}>{this.props.label}</Text>
+            </View>
         );
     }
 }

@@ -1,78 +1,96 @@
-
-import React, { Component } from 'react';
-import { Container, Header, Content, Card, CardItem, Body } from 'native-base';
-import IconEt from 'react-native-vector-icons/Entypo';
-import Icon from 'react-native-vector-icons/Feather';
+import React from 'react';
 import {
-    StatusBar,
-    AppRegistry,
-    PanResponder,
-    TouchableOpacity,
-    Dimensions,
     NativeModules,
     LayoutAnimation,
-    Animated
-} from "react-native";
-
-import {
-    StyleSheet,
     Text,
-    ScrollView, View, Button
+    TouchableOpacity,
+    TouchableNativeFeedback,
+    StyleSheet,
+    View,
 } from 'react-native';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: "column",
-    },
-    header: {
-        flex: 1,
-        height: 25,
-        backgroundColor: "#F8F8F8",
-        color: "#555555",
-        padding: 20
-    },
-    content: {
-        flex: 1,
-        padding: 20,
-    }
-});
-
+import IconEt from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/Feather';
+import BizagiGrid from './BizagiGrid';
+import BizagiCard from './BizagiCard';
 const { UIManager } = NativeModules;
 
 UIManager.setLayoutAnimationEnabledExperimental &&
     UIManager.setLayoutAnimationEnabledExperimental(true);
 
-class BizagiCollapsible extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
+export default class BizagiCollapsible extends React.Component {
     state = {
-        heightContent: 45,
-        minHeightContent: 45,
-        maxHeightContent: 600,
-        label: "Header"
+        h: 0,
+        w: 100,
+        expanded: false,
+        icon: "chevron-right"
+    };
+
+    _onPress = () => {
+        if (this.state.expanded) {
+            LayoutAnimation.spring();
+            this.setState({ h: 0, expanded: false, icon: "chevron-right" })
+        } else {
+            LayoutAnimation.spring();
+            this.setState({ h: "auto", expanded: true, icon: "chevron-down" })
+        }
     }
-    onPress = () => {
-        // Animate the update
-        LayoutAnimation.spring();
-        this.setState({ heightContent: this.state.heightContent + 450 })
-    }
+
     render() {
         return (
-            <View>
-                <TouchableOpacity style={styles.container} onPress={this._onPress}>
-                    <View style={styles.header} >
-                        <Text>{this.state.label}</Text>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={this._onPress}>
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={styles.button}>
+                            <Text style={this.props.type == "title" ? styles.title: styles.subTitle}>{this.props.title}</Text>
+                        </View>
+                        <View>
+                            <IconEt style={styles.iconExapand} name={this.state.icon} />
+                        </View>
                     </View>
                 </TouchableOpacity>
-                <View style={[styles.content, { height: this.state.heightContent }]}>
-                    <Text>Container</Text>
+                <View style={[styles.box, { height: this.state.h, backgroundColor: this.props.bgColor }]}>
+                    {this.props.children}
                 </View>
             </View>
         );
     }
 }
 
-export default BizagiCollapsible;
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: "column",
+    },
+    title: {
+        color: "#555555",
+        fontSize: 14,
+        fontWeight: "bold",
+        padding: 15,
+    },
+    subTitle: {
+        color: "#555555",
+        fontSize: 12,
+        fontWeight: "normal",
+        padding: 15,
+    },
+    button: {
+        flex: 1,
+        height: 50,
+        backgroundColor: '#F8F8F8',
+        marginLeft: "auto"
+    },
+    buttonText: {
+        color: '#B7B7B7',
+        fontWeight: 'normal',
+        padding: 15,
+        fontSize: 12,
+        backgroundColor: "transparent"
+    },
+    iconExapand: {
+        color: '#B7B7B7',
+        fontWeight: 'normal',
+        fontSize: 20,
+        backgroundColor: '#F8F8F8',
+        padding: 15,
+    }
+});

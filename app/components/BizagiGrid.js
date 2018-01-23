@@ -93,7 +93,7 @@ export default class BizagiGrid extends Component {
     render() {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         return (
-            <Container style={{ backgroundColor: '#DEDEDE' }}>
+            <Container style={{ backgroundColor: '#DEDEDE', height: 300, maxHeight:600 }}>
                 <Content style={{ backgroundColor: 'transparent' }}>
                     <List style={{ backgroundColor: 'transparent', padding: 12, zIndex: 0 }}
                         swipeRowStyle={{ backgroundColor: 'transparent' }}

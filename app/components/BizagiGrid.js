@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, ListView, View, Image } from 'react-native';
-import { Container, Grid, Col, Row, Header, Content, Button, List, ListItem, Text } from 'native-base';
+import { Container, Grid, Col, Row, Header, Content, Button, List, ListItem, Text, Card } from 'native-base';
 import Icon from 'react-native-vector-icons/Feather';
+import IconEt from 'react-native-vector-icons/Entypo';
+import BizagiCard from './BizagiCard';
 
 const datas = [
     {
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: '400'
     },
-    listItemText:{
+    listItemText: {
         color: '#B7B7B7',
         fontSize: 10,
         fontWeight: '200'
@@ -100,7 +102,7 @@ export default class BizagiGrid extends Component {
                             <ListItem style={styles.listItem}>
                                 <Content>
                                     <Grid>
-                                        <Col style={{ width: 35, marginRight: 10}}>
+                                        <Col style={{ width: 35, marginRight: 10 }}>
                                             <Image style={{ width: 35, height: 35 }} source={data.image}></Image>
                                         </Col>
                                         <Col style={{ flex: 2 }}>
@@ -121,18 +123,20 @@ export default class BizagiGrid extends Component {
                                         </Col>
                                     </Grid>
                                 </Content>
-                            </ListItem>}
+                            </ListItem>
+                        }
+
                         /*  renderLeftHiddenRow={data => 
                            <Button full onPress={() => alert(data)}>
                              <Icon active name="information-circle" />
                            </Button>} */
                         renderRightHiddenRow={(data, secId, rowId, rowMap) =>
                             <Button style={styles.deleteButton} full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                                <Icon active style={{color: '#FFF', fontWeight: '200'}} size={22} name="x" />
+                                <Icon active style={{ color: '#FFF', fontWeight: '200' }} size={22} name="x" />
                             </Button>}
                         /* leftOpenValue={75} */
                         rightOpenValue={-50}
-                    />
+                        List />
                 </Content>
             </Container>
         );

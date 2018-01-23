@@ -16,6 +16,7 @@ import {
   View
 } from 'react-native';
 
+
 import FirstForm from './app/FirstForm';
 import DetailView from './app/DetailView';
 

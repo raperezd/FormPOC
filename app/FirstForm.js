@@ -7,16 +7,18 @@ import {
     ScrollView, View
 } from 'react-native';
 
-import { Button } from 'native-base';
+import { Button, Card, CardItem, Body, List, ListItem } from 'native-base';
 
 import Icon from 'react-native-vector-icons/Feather';
-
 import BizagiGroup from './components/BizagiGroup';
 import BizagiControl from './components/BizagiControl';
 import BizagiExtendedText from './components/BizagiExtendedText';
 import BizagiGrid from './components/BizagiGrid';
 import ImageHeader from './components/ImageHeader';
 import TouchableIconBtn from './components/TouchableIconBtn';
+import BizagiCard from './components/BizagiCard';
+import BizagiCollapsible from './components/BizagiCollapsible';
+
 
 const styles = StyleSheet.create({
     form: {
@@ -63,10 +65,10 @@ class FirstForm extends React.Component {
         return ( 
             <View style={{ flex: 1 }}> 
                 <ScrollView style={styles.form}>
-                    <BizagiGroup collapsed={false} headerStyle={{height: 40}} headerTextStyle={{}} headerText="Office supplies request"> 
-                        <BizagiGrid/>
+                    <BizagiGroup collapsed={false} headerStyle={{ height: 40 }} headerTextStyle={{}} headerText="Office supplies request">
+                        <BizagiGrid />
                         <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
-                        <BizagiControl label={<Text style={{fontSize: 12, fontWeight: '600'}}>Replacement reason</Text>}>
+                        <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>
                             <BizagiExtendedText></BizagiExtendedText>
                         </BizagiControl>
                     </BizagiGroup>

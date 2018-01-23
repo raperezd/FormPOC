@@ -4,32 +4,62 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    ScrollView, View, Button
+    ScrollView, View
 } from 'react-native';
 
+import { Button } from 'native-base';
+
+import Icon from 'react-native-vector-icons/Feather';
 
 import BizagiGroup from './components/BizagiGroup';
 import BizagiControl from './components/BizagiControl';
 import BizagiExtendedText from './components/BizagiExtendedText';
 import BizagiGrid from './components/BizagiGrid';
+import ImageHeader from './components/ImageHeader';
+import TouchableIconBtn from './components/TouchableIconBtn';
 
 const styles = StyleSheet.create({
     form: {
         backgroundColor: '#FFFFFF'
+    },
+    header: {
+        backgroundColor: 'transparent'
+        //height: 81
+    },
+    headerTitle: {      
+      color: '#FFF',
+      fontSize: 16,
+      fontWeight: '200'
+    },
+    headerSubTitle: {
+        color: '#FFF',
+        fontSize: 12,
+        fontWeight: '100'
+    },
+    headerBackTitle: {
+        fontSize: 16,
+        padding: 16, 
+        color: '#FFF'
     }
 });
- 
 
-                        /* <BizagiGroup collapsed={false} headerStyle={{height: 30}} headerTextStyle={{fontSize: 10, fontWeight: '300'}} headerText="SUPLIES TO REQUEST">
-                            <Text>Hi 2</Text>
-                        </BizagiGroup> */
 class FirstForm extends React.Component {
-    static navigationOptions = {
-        title: 'Request office supplies'
-    };
+    static navigationOptions =  ({ navigation }) => ({
+        //title: 'Request office supplies',
+        headerStyle : styles.header,
+        headerTitleStyle : styles.headerTitle,  
+        headerLeft: <TouchableIconBtn style={{color: '#FFF'}} size={22} name="arrow-left" onPress={() => navigation.goBack(null)}></TouchableIconBtn>,
+        headerRight: <Icon  style={styles.headerBackTitle} size={22} name="more-vertical"/>,
+        headerTitle: <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', paddingTop:5, paddingBottom: 5}}> 
+                <Text style={styles.headerTitle}>Request office supplies</Text>
+                <Text style={styles.headerSubTitle}>CO-6122 Office supplies request</Text>
+            </View>,
+        headerTintColor: 'white',
+        header: (props) => <View><ImageHeader {...props} /></View>
+    });
 
-    render() {
-        const { navigate } = this.props.navigation; 
+    render() { 
+        const { navigate } = this.props.navigation;   
         return ( 
             <View style={{ flex: 1 }}> 
                 <ScrollView style={styles.form}>
@@ -42,12 +72,11 @@ class FirstForm extends React.Component {
                     </BizagiGroup>
                 </ScrollView>
                 <View>
-                    <Button color='#295d7b' 
-                        title="Request office supplies"
-                        onPress={() =>
+                    <Button full style={{backgroundColor: '#295d7b'}} onPress={() =>
                             navigate('DetailView', {})
-                        }
-                    />
+                        }>
+                        <Text style={{color:'#FFF'}}>Request office supplies</Text>
+                    </Button>
                 </View>
             </View>
         );

@@ -18,11 +18,24 @@ import {
 
 import FirstForm from './app/FirstForm';
 import DetailView from './app/DetailView';
+import ImageHeader from './app/components/ImageHeader';
 
+const styles = StyleSheet.create({
+  header: {
+      backgroundColor: 'transparent'
+  },
+  headerTitle: {
+    color: '#FFF',
+    fontWeight: '400'
+  }
+});
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'React Native POC',
+    headerStyle : styles.header,
+    headerTitleStyle : styles.headerTitle,
+    header: (props) => <ImageHeader {...props} />
   };
   render() {
     const { navigate } = this.props.navigation;

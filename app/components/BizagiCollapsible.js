@@ -7,6 +7,7 @@ import {
     TouchableNativeFeedback,
     StyleSheet,
     View,
+    Animated
 } from 'react-native';
 
 import IconEt from 'react-native-vector-icons/Entypo';
@@ -22,18 +23,30 @@ export default class BizagiCollapsible extends React.Component {
     state = {
         h: 0,
         w: 100,
+        he: new Animated.Value(0),
         expanded: false,
         icon: "chevron-right"
     };
 
     _onPress = () => {
         if (this.state.expanded) {
-            LayoutAnimation.spring();
             this.setState({ h: 0, expanded: false, icon: "chevron-right" })
+            Animated.timing(
+                this.state.he,
+                {
+                    toValue: 0
+                }
+            ).start();
         } else {
-            LayoutAnimation.spring();
             this.setState({ h: "auto", expanded: true, icon: "chevron-down" })
+            Animated.timing(
+                this.state.he,
+                {
+                    toValue: 500
+                }
+            ).start();
         }
+
     }
 
     render() {
@@ -42,16 +55,16 @@ export default class BizagiCollapsible extends React.Component {
                 <TouchableOpacity onPress={this._onPress}>
                     <View style={{ flexDirection: "row" }}>
                         <View style={styles.button}>
-                            <Text style={this.props.type == "title" ? styles.title: styles.subTitle}>{this.props.title}</Text>
+                            <Text style={this.props.type == "title" ? styles.title : styles.subTitle}>{this.props.title}</Text>
                         </View>
                         <View>
                             <IconEt style={styles.iconExapand} name={this.state.icon} />
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={[styles.box, { height: this.state.h, backgroundColor: this.props.bgColor }]}>
+                <Animated.View style={[styles.box, { height: this.state.he, backgroundColor: this.props.bgColor }]}>
                     {this.props.children}
-                </View>
+                </Animated.View>
             </View>
         );
     }

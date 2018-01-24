@@ -26,7 +26,8 @@ export default StyleSheet.create({
     },
     imageContainer: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
+        marginTop:20,
         borderTopLeftRadius: entryBorderRadius,
         borderTopRightRadius: entryBorderRadius
     },
@@ -38,7 +39,7 @@ export default StyleSheet.create({
         resizeMode: 'cover',
         borderRadius: Platform.OS === 'ios' ? entryBorderRadius : 0,
         borderTopLeftRadius: entryBorderRadius,
-        borderTopRightRadius: entryBorderRadius
+        borderTopRightRadius: entryBorderRadius,
     },
     // image's border radius is buggy on ios; let's hack it!
     radiusMask: {

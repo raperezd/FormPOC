@@ -20,7 +20,7 @@ export default class SliderEntry extends Component {
             <ParallaxImage
               source={{ uri: illustration.uri }}
               containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
-             style={styles.image}
+              style={[styles.image ,{width:100, height:100}]}
               parallaxFactor={0.35}
               showSpinner={true}
               spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
@@ -29,7 +29,7 @@ export default class SliderEntry extends Component {
         ) : (
             <Image
               source={{ uri: illustration.uri }}
-              style={styles.image}
+               style={[styles.image ,{width:100, height:100}]}
             />
         );
     }

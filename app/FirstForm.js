@@ -24,9 +24,10 @@ import BizagiModal from './components/BizagiModal';
 import MyCarousel from './components/BizagiCarousel';
 import SliderEntry from './components/SliderEntry';
 
-import Carousel from 'react-native-snap-carousel';
 import { Dimensions, Platform } from 'react-native';
 import stylesC from './components/styles/BizagiCarouselStyles.style';
+
+import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -36,7 +37,7 @@ function wp(percentage) {
 }
 
 const slideHeight = viewportHeight * 0.4;
-const slideWidth = wp(75);
+const slideWidth = wp(78);
 const itemHorizontalMargin = wp(0.5);
 
 export const sliderWidth = viewportWidth;
@@ -125,10 +126,19 @@ class FirstForm extends React.Component {
             },
         ]
     }
-    _renderItem({ item, index }) {
+     _renderItem ({item, index}, parallaxProps) {
         return (
-            <View style={stylesC.slide}>
-                <Image style={{ width: sliderWidth, height: slideHeight }} source={item.illustration}></Image>
+            <View style={stylesC.item}>
+                <ParallaxImage
+                    source={{ uri: item.illustration.uri }}
+                    containerStyle={stylesC.imageContainer}
+                    style={stylesC.image}
+                    parallaxFactor={0.4}
+                    {...parallaxProps}
+                />
+                <Text style={stylesC.title} numberOfLines={2}>
+                    { item.productName }
+                </Text>
             </View>
         );
     }
@@ -169,17 +179,18 @@ class FirstForm extends React.Component {
                   hasParallaxImages={true}
                   firstItem={1}
                   inactiveSlideScale={0.94}
-                  inactiveSlideOpacity={0.7}
+                  inactiveSlideOpacity={0.5}
                   enableMomentum={false}
-                  containerCustomStyle={styles.slider}
-                  contentContainerCustomStyle={styles.sliderContentContainer}
-                  loop={true}
+                  containerCustomStyle={stylesC.slider}
+                  contentContainerCustomStyle={stylesC.sliderContentContainer}
+                  loop={false}
                   loopClonesPerSide={2}
                   autoplay={true}
                   autoplayDelay={500}
                   autoplayInterval={3000}
                   onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
                 />
+                
         );
     }
 }

@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
-    ScrollView, View
+    ScrollView,
+    View,
+    Image
 } from 'react-native';
 
-import { Button, Card, CardItem, Body, List, ListItem } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Left, Body, Right } from 'native-base';
 
 import Icon from 'react-native-vector-icons/Feather';
 import BizagiGroup from './components/BizagiGroup';
@@ -19,8 +21,28 @@ import TouchableIconBtn from './components/TouchableIconBtn';
 import BizagiCard from './components/BizagiCard';
 import BizagiCollapsible from './components/BizagiCollapsible';
 import BizagiModal from './components/BizagiModal';
+import MyCarousel from './components/BizagiCarousel';
+import SliderEntry from './components/SliderEntry';
 
+import Carousel from 'react-native-snap-carousel';
+import { Dimensions, Platform } from 'react-native';
+import stylesC from './components/styles/BizagiCarouselStyles.style';
 
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
+function wp(percentage) {
+    const value = (percentage * viewportWidth) / 100;
+    return Math.round(value);
+}
+
+const slideHeight = viewportHeight * 0.4;
+const slideWidth = wp(75);
+const itemHorizontalMargin = wp(0.5);
+
+export const sliderWidth = viewportWidth;
+export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+
+const entryBorderRadius = 8;
 const styles = StyleSheet.create({
     form: {
         backgroundColor: '#FFFFFF'
@@ -47,6 +69,80 @@ const styles = StyleSheet.create({
 });
 
 class FirstForm extends React.Component {
+
+    state = {
+        sliderWidth: 100,
+        itemWidth: 100,
+        entries: [
+            {
+                illustration: { uri: 'https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_25_acoustic_noise_cancelling_headphones-apple_devices/product_silo_images/qc25_apple_black_EC_hero_010716.psd/_jcr_content/renditions/cq5dam.web.320.320.png' },
+                productName: 'Headphones',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Julio Ocaña',
+                deliverTime: 'Deliver in 8 days'
+            },
+            {
+                illustration: { uri: 'http://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c05149188.png' },
+                productName: 'Laptop support',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Angela Pinzón',
+                deliverTime: 'Deliver in 5 days'
+            },
+            {
+                illustration: { uri: 'https://acco-product-images.s3.amazonaws.com/mbank41455_w1400_h1400.jpg' },
+                productName: 'Foot rest',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Diego Parra',
+                deliverTime: 'Deliver in 8 days'
+            },
+            {
+                illustration: { uri: 'https://http2.mlstatic.com/mesa-base-monitor-pc-altura-5-niveles-1016cm-ancho-34cm-D_NQ_NP_903311-MCO20506525942_122015-F.jpg' },
+                productName: 'Monitor base',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Jair Hernandez',
+                deliverTime: 'Deliver in 13 days'
+            },
+            {
+                illustration: { uri: 'https://acco-product-images.s3.amazonaws.com/mbank41455_w1400_h1400.jpg' },
+                productName: 'Foot rest',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Diego Parra',
+                deliverTime: 'Deliver in 8 days'
+            },
+            {
+                illustration: { uri: 'https://http2.mlstatic.com/mesa-base-monitor-pc-altura-5-niveles-1016cm-ancho-34cm-D_NQ_NP_903311-MCO20506525942_122015-F.jpg' },
+                productName: 'Monitor base',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Jair Hernandez',
+                deliverTime: 'Deliver in 13 days'
+            },
+            {
+                illustration: { uri: 'https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_25_acoustic_noise_cancelling_headphones-apple_devices/product_silo_images/qc25_apple_black_EC_hero_010716.psd/_jcr_content/renditions/cq5dam.web.320.320.png' },
+                productName: 'Headphones',
+                dimensions: '6.4 x 6.7 x 2.1 in',
+                deliverTo: 'Julio Ocaña',
+                deliverTime: 'Deliver in 8 days'
+            },
+        ]
+    }
+    _renderItem({ item, index }) {
+        return (
+            <View style={stylesC.slide}>
+                <Image style={{ width: sliderWidth, height: slideHeight }} source={item.illustration}></Image>
+            </View>
+        );
+    }
+    _renderItemWithParallax({ item, index }, parallaxProps) {
+        return (
+            <SliderEntry
+                data={item}
+                even={(index + 1) % 2 === 0}
+                parallax={true}
+                parallaxProps={parallaxProps}
+            />
+        );
+    }
+
     static navigationOptions = ({ navigation }) => ({
         //title: 'Request office supplies',
         headerStyle: styles.header,
@@ -64,32 +160,26 @@ class FirstForm extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={{ flex: 1 }}>
-                <BizagiModal />
-                <ScrollView style={styles.form}>
-                    <View style={{ height: "auto" }}>
-                        <BizagiCollapsible expanded={true} bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
-                            <View>
-                                <BizagiCollapsible expanded={true} bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
-                                    <BizagiCard label="Add suplies to request." />
-                                    <BizagiGrid />
-                                </BizagiCollapsible>
-                            </View>
-                            <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
-                            <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>
-                                <BizagiExtendedText></BizagiExtendedText>
-                            </BizagiControl>
-                        </BizagiCollapsible>
-                    </View>
-                </ScrollView>
-                <View>
-                    <Button full style={{ backgroundColor: '#295d7b' }} onPress={() =>
-                        navigate('DetailView', {})
-                    }>
-                        <Text style={{ color: '#FFF' }}>Request office supplies</Text>
-                    </Button>
-                </View>
-            </View>
+            <Carousel
+                  ref={(c) => { if (!this.state.slider1Ref) { this.setState({ slider1Ref: c }); } }}
+                  data={this.state.entries}
+                  renderItem={this._renderItemWithParallax}
+                  sliderWidth={sliderWidth}
+                  itemWidth={itemWidth}
+                  hasParallaxImages={true}
+                  firstItem={1}
+                  inactiveSlideScale={0.94}
+                  inactiveSlideOpacity={0.7}
+                  enableMomentum={false}
+                  containerCustomStyle={styles.slider}
+                  contentContainerCustomStyle={styles.sliderContentContainer}
+                  loop={true}
+                  loopClonesPerSide={2}
+                  autoplay={true}
+                  autoplayDelay={500}
+                  autoplayInterval={3000}
+                  onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
+                />
         );
     }
 }

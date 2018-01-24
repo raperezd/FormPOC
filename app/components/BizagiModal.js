@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Modal, StyleSheet } from 'react-native';
-import { Image } from 'react-native';
-import {CardImageExample} from './cardexample';
 
 export default class BizagiModal extends Component {
   state = {
@@ -25,7 +23,14 @@ export default class BizagiModal extends Component {
               onRequestClose={() => this.closeModal()}
           >
             <View style={styles.modalContainer}>
-                <CardImageExample />
+              <View style={styles.innerContainer}>
+                <Text>This is content inside of modal component</Text>
+                <Button
+                    onPress={() => this.closeModal()}
+                    title="Close modal"
+                >
+                </Button>
+              </View>
             </View>
           </Modal>
           <Button

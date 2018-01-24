@@ -119,22 +119,22 @@ const styles = StyleSheet.create({
     },
     iconExapandPrincipal: {
         color: '#B7B7B7',
-        fontWeight: 'normal',
-        fontSize: 12,
+        fontWeight: "200",
+        fontSize: 24,
         backgroundColor: '#F8F8F8',
-        padding: 18,
+        padding: 11.8,
         borderBottomColor: '#DEDEDE',
         borderBottomWidth: 1,
     },
     iconExapandSecondary: {
         color: '#B7B7B7',
         fontWeight: 'normal',
-        fontSize: 12,
+        fontSize: 22,
         backgroundColor: '#F8F8F8',
-        padding: 8.5,
+        padding: 3.5,
         marginTop: 20,
         borderTopColor: '#DEDEDE',
         borderTopWidth: 1,
-        paddingRight: 18
+        paddingRight: 11
     }
 });

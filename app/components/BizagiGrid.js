@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     listItemText: {
         color: '#B7B7B7',
         fontSize: 10,
-        fontWeight: '200'
+        fontWeight: '200',
+        marginLeft:20
     }
 });
 

@@ -21,8 +21,6 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 
 export default class BizagiCollapsible extends React.Component {
     state = {
-        h: 0,
-        w: 100,
         he: new Animated.Value(0),
         expanded: false,
         icon: "chevron-right"
@@ -30,7 +28,7 @@ export default class BizagiCollapsible extends React.Component {
 
     _onPress = () => {
         if (this.state.expanded) {
-            this.setState({ h: 0, expanded: false, icon: "chevron-right" })
+            this.setState({ expanded: false, icon: "chevron-right" })
             Animated.timing(
                 this.state.he,
                 {
@@ -38,15 +36,14 @@ export default class BizagiCollapsible extends React.Component {
                 }
             ).start();
         } else {
-            this.setState({ h: "auto", expanded: true, icon: "chevron-down" })
+            this.setState({ expanded: true, icon: "chevron-down" })
             Animated.timing(
                 this.state.he,
                 {
-                    toValue: 500
+                    toValue: "auto"
                 }
             ).start();
         }
-
     }
 
     render() {
@@ -73,6 +70,10 @@ export default class BizagiCollapsible extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
+        paddingBottom:20
+    },
+    box:{
+        minHeight:"auto"
     },
     title: {
         color: "#555555",
@@ -123,5 +124,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         borderTopColor: '#DEDEDE',
         borderTopWidth: 1,
+        paddingRight: 18
     }
 });

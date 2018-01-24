@@ -67,10 +67,12 @@ class FirstForm extends React.Component {
                 <ScrollView style={styles.form}>
                     <View style={{ height: "auto" }}>
                         <BizagiCollapsible bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
-                            <BizagiCollapsible bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
-                                <BizagiCard label="Add suplies to request." />
-                                <BizagiGrid />
-                            </BizagiCollapsible>
+                            <View>
+                                <BizagiCollapsible bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
+                                    <BizagiCard label="Add suplies to request." />
+                                    <BizagiGrid />
+                                </BizagiCollapsible>
+                            </View>
                             <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
                             <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>
                                 <BizagiExtendedText></BizagiExtendedText>

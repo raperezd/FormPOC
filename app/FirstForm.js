@@ -66,9 +66,9 @@ class FirstForm extends React.Component {
             <View style={{ flex: 1 }}>
                 <ScrollView style={styles.form}>
                     <View style={{ height: "auto" }}>
-                        <BizagiCollapsible bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
+                        <BizagiCollapsible expanded={true} bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
                             <View>
-                                <BizagiCollapsible bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
+                                <BizagiCollapsible expanded={true} bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
                                     <BizagiCard label="Add suplies to request." />
                                     <BizagiGrid />
                                 </BizagiCollapsible>

@@ -20,11 +20,22 @@ UIManager.setLayoutAnimationEnabledExperimental &&
     UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default class BizagiCollapsible extends React.Component {
-    state = {
-        he: new Animated.Value(0),
-        expanded: false,
-        icon: "chevron-right"
-    };
+    constructor(props) {
+        super(props);
+        if (props.expanded) {
+            this.state = {
+                he: new Animated.Value(),
+                expanded: props.expanded,
+                icon: "chevron-down"
+            };
+        } else {
+            this.state = {
+                he: new Animated.Value(0),
+                expanded: props.expanded,
+                icon: "chevron-right"
+            };
+        }
+    }
 
     _onPress = () => {
         if (this.state.expanded) {
@@ -70,10 +81,10 @@ export default class BizagiCollapsible extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        paddingBottom:20
+        paddingBottom: 20
     },
-    box:{
-        minHeight:"auto"
+    box: {
+        minHeight: "auto"
     },
     title: {
         color: "#555555",
@@ -87,7 +98,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "normal",
         padding: 5,
-        marginLeft:12,
+        marginLeft: 12,
     },
     principal: {
         flex: 1,

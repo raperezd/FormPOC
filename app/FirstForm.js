@@ -18,6 +18,7 @@ import ImageHeader from './components/ImageHeader';
 import TouchableIconBtn from './components/TouchableIconBtn';
 import BizagiCard from './components/BizagiCard';
 import BizagiCollapsible from './components/BizagiCollapsible';
+import BizagiModal from './components/BizagiModal';
 
 
 const styles = StyleSheet.create({
@@ -64,6 +65,7 @@ class FirstForm extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={{ flex: 1 }}>
+                <BizagiModal />
                 <ScrollView style={styles.form}>
                     <View style={{ height: "auto" }}>
                         <BizagiCollapsible expanded={true} bgColor={"#fff"} title={"Office supplies request"} type={"title"}>

@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
         //height: 81
     },
-    headerTitle: {      
-      color: '#FFF',
-      fontSize: 16,
-      fontWeight: '200'
+    headerTitle: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: '200'
     },
     headerSubTitle: {
         color: '#FFF',
@@ -40,48 +40,49 @@ const styles = StyleSheet.create({
     },
     headerBackTitle: {
         fontSize: 16,
-        padding: 16, 
+        padding: 16,
         color: '#FFF'
     }
 });
 
 class FirstForm extends React.Component {
-    static navigationOptions =  ({ navigation }) => ({
+    static navigationOptions = ({ navigation }) => ({
         //title: 'Request office supplies',
-        headerStyle : styles.header,
-        headerTitleStyle : styles.headerTitle,  
-        headerLeft: <TouchableIconBtn style={{color: '#FFF'}} size={22} name="arrow-left" onPress={() => navigation.goBack(null)}></TouchableIconBtn>,
-        headerRight: <Icon  style={styles.headerBackTitle} size={22} name="more-vertical"/>,
-        headerTitle: <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', paddingTop:5, paddingBottom: 5}}> 
-                <Text style={styles.headerTitle}>Request office supplies</Text>
-                <Text style={styles.headerSubTitle}>CO-6122 Office supplies request</Text>
-            </View>,
+        headerStyle: styles.header,
+        headerTitleStyle: styles.headerTitle,
+        headerLeft: <TouchableIconBtn style={{ color: '#FFF' }} size={22} name="arrow-left" onPress={() => navigation.goBack(null)}></TouchableIconBtn>,
+        headerRight: <Icon style={styles.headerBackTitle} size={22} name="more-vertical" />,
+        headerTitle: <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', paddingTop: 5, paddingBottom: 5 }}>
+            <Text style={styles.headerTitle}>Request office supplies</Text>
+            <Text style={styles.headerSubTitle}>CO-6122 Office supplies request</Text>
+        </View>,
         headerTintColor: 'white',
         header: (props) => <View><ImageHeader {...props} /></View>
     });
 
-    render() { 
-        const { navigate } = this.props.navigation;   
-        return ( 
-            <View style={{ flex: 1 }}> 
+    render() {
+        const { navigate } = this.props.navigation;
+        return (
+            <View style={{ flex: 1 }}>
                 <ScrollView style={styles.form}>
-                    <BizagiCollapsible bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
-                        <BizagiCollapsible bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
-                            <BizagiCard label="Add suplies to request." />
-                            <BizagiGrid />
+                    <View style={{ height: "auto" }}>
+                        <BizagiCollapsible bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
+                            <BizagiCollapsible bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
+                                <BizagiCard label="Add suplies to request." />
+                                <BizagiGrid />
+                            </BizagiCollapsible>
+                            <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
+                            <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>
+                                <BizagiExtendedText></BizagiExtendedText>
+                            </BizagiControl>
                         </BizagiCollapsible>
-                        <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
-                        <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>
-                            <BizagiExtendedText></BizagiExtendedText>
-                        </BizagiControl>
-                    </BizagiCollapsible>
-
+                    </View>
                 </ScrollView>
                 <View>
-                    <Button full style={{backgroundColor: '#295d7b'}} onPress={() =>
-                            navigate('DetailView', {})
-                        }>
-                        <Text style={{color:'#FFF'}}>Request office supplies</Text>
+                    <Button full style={{ backgroundColor: '#295d7b' }} onPress={() =>
+                        navigate('DetailView', {})
+                    }>
+                        <Text style={{ color: '#FFF' }}>Request office supplies</Text>
                     </Button>
                 </View>
             </View>

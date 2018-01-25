@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { StyleSheet, ListView } from 'react-native';
 import { Button, List } from 'native-base';
 import Icon from 'react-native-vector-icons/Feather';
@@ -23,6 +24,16 @@ export default class BizagiGrid extends Component {
             listViewData: datas,
         };
     }
+
+    static propTypes = {
+        onItemSelected: PropTypes.func
+    }
+
+    static defaultProps = {
+        onItemSelected: (item) => { }
+    }
+
+
     deleteRow(secId, rowId, rowMap) {
         rowMap[`${secId}${rowId}`].props.closeRow();
         const newData = [...this.state.listViewData];
@@ -36,7 +47,7 @@ export default class BizagiGrid extends Component {
                 style={{ backgroundColor: 'transparent', padding: 12, zIndex: 0 }}
                 swipeRowStyle={{ backgroundColor: 'transparent' }}
                 dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-                renderRow={data => <BizagiGridItem {...data} onPress={_ => console.log(data)} />}
+                renderRow={data => <BizagiGridItem {...data} onPress={_ => this.props.onItemSelected(data)} />}
 
                 renderRightHiddenRow={(data, secId, rowId, rowMap) =>
                     (

@@ -69,8 +69,8 @@ class FirstForm extends React.Component {
                         <BizagiCollapsible expanded={true} bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
                             <View>
                                 <BizagiCollapsible expanded={true} bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
-                                    <BizagiCard label="Add suplies to request." />
-                                    <BizagiGrid />
+                                    <BizagiCard label="Add suplies to request."/>
+                                    <BizagiGrid onItemSelected={(item) => navigate('DetailView', {...item}) }/>
                                 </BizagiCollapsible>
                             </View>
                             <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
@@ -81,9 +81,7 @@ class FirstForm extends React.Component {
                     </View>
                 </ScrollView>
                 <View>
-                    <Button full style={{ backgroundColor: '#295d7b' }} onPress={() =>
-                        navigate('DetailView', {})
-                    }>
+                    <Button full style={{ backgroundColor: '#295d7b' }}>
                         <Text style={{ color: '#FFF' }}>Request office supplies</Text>
                     </Button>
                 </View>

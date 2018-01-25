@@ -1,6 +1,10 @@
 
 import React, { Component } from 'react';
 
+import Icon from 'react-native-vector-icons/Feather';
+import ImageHeader from './components/ImageHeader';
+import TouchableIconBtn from './components/TouchableIconBtn';
+
 import {
     StyleSheet,
     Text,
@@ -10,14 +14,44 @@ import {
 const styles = StyleSheet.create({
     form: {
         backgroundColor: '#FFFFFF'
+    },
+    header: {
+        backgroundColor: 'transparent'
+        //height: 81
+    },
+    headerTitle: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: '200'
+    },
+    headerSubTitle: {
+        color: '#FFF',
+        fontSize: 12,
+        fontWeight: '100'
+    },
+    headerBackTitle: {
+        fontSize: 16,
+        padding: 16,
+        color: '#FFF'
     }
 });
 
 
 class DetailView extends React.Component {
-    static navigationOptions = {
-        title: 'Detalle'
-    };
+    static navigationOptions = ({ navigation }) => {
+        const { params } = navigation.state;
+        return {
+            headerStyle: styles.header,
+            headerTitleStyle: styles.headerTitle,
+            headerLeft: <TouchableIconBtn style={{ color: '#FFF' }} size={22} name="arrow-left" onPress={() => navigation.goBack(null)}></TouchableIconBtn>,
+            headerTitle: <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', paddingTop: 5, paddingBottom: 5 }}>
+                <Text style={styles.headerTitle}>Supplies</Text>
+                <Text style={styles.headerSubTitle}>{params.productName}</Text>
+            </View>,
+            headerTintColor: 'white',
+            header: (props) => <View><ImageHeader {...props} /></View>
+        }
+    }
 
     render() {
         const { navigate } = this.props.navigation;

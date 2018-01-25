@@ -7,8 +7,7 @@ import {
     TouchableNativeFeedback,
     StyleSheet,
     View,
-    Animated,
-    TouchableHighlight
+    Animated
 } from 'react-native';
 
 import IconEt from 'react-native-vector-icons/Entypo';
@@ -21,95 +20,115 @@ UIManager.setLayoutAnimationEnabledExperimental &&
     UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default class BizagiCollapsible extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = {
-            title: props.title,
-            expanded: true,
-            animation: new Animated.Value()
-        };
+        if (props.expanded) {
+            this.state = {
+                he: new Animated.Value(),
+                expanded: props.expanded,
+                icon: "chevron-down"
+            };
+        } else {
+            this.state = {
+                he: new Animated.Value(0),
+                expanded: props.expanded,
+                icon: "chevron-right"
+            };
+        }
     }
 
-    toggle() {
-        let initialValue = this.state.expanded ? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
-            finalValue = this.state.expanded ? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
-
-        this.setState({
-            expanded: !this.state.expanded
-        });
-
-        this.state.animation.setValue(initialValue);
-        Animated.spring(
-            this.state.animation,
-            {
-                toValue: finalValue
-            }
-        ).start();
+    _onPress = () => {
+        if (this.state.expanded) {
+            this.setState({ expanded: false, icon: "chevron-right" })
+            Animated.timing(
+                this.state.he,
+                {
+                    toValue: 0
+                }
+            ).start();
+        } else {
+            this.setState({ expanded: true, icon: "chevron-down" })
+            Animated.timing(
+                this.state.he,
+                {
+                    toValue: "auto"
+                }
+            ).start();
+        }
     }
-
-    _setMaxHeight(event) {
-        this.setState({
-            maxHeight: event.nativeEvent.layout.height
-        });
-    }
-
-    _setMinHeight(event) {
-        this.setState({
-            minHeight: event.nativeEvent.layout.height
-        });
-    }
-
 
     render() {
-
         return (
-            <Animated.View
-                style={[styles.container, { height: this.state.animation }]}>
-                <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
-                    <Text style={styles.title}>{this.state.title}</Text>
-                    <TouchableHighlight
-                        style={styles.button}
-                        onPress={this.toggle.bind(this)}
-                        underlayColor="#f1f1f1">
-                        <Text>X</Text>
-                    </TouchableHighlight>
-                </View>
-
-                <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={this._onPress}>
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={this.props.type == "title" ? styles.principal : styles.secondary}>
+                            <Text style={this.props.type == "title" ? styles.title : styles.subTitle}>{this.props.title}</Text>
+                        </View>
+                        <View>
+                            <IconEt style={this.props.type == "title" ? styles.iconExapandPrincipal : styles.iconExapandSecondary} name={this.state.icon} />
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                {this.state.expanded && <Animated.View style={[styles.box, { height: this.state.he, backgroundColor: this.props.bgColor }]}>
                     {this.props.children}
-                </View>
-
-            </Animated.View>
+                </Animated.View>}
+            </View>
         );
     }
 }
 
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
-        margin: 10,
-        overflow: 'hidden'
+        flexDirection: "column",
+        paddingBottom: 20
     },
-    titleContainer: {
-        flexDirection: 'row'
+    box: {
+        minHeight: "auto"
     },
     title: {
+        color: "#555555",
+        fontSize: 14,
+        fontWeight: "bold",
+        padding: 15,
+        marginLeft: 2,
+    },
+    subTitle: {
+        color: "#555555",
+        fontSize: 12,
+        fontWeight: "normal",
+        padding: 5,
+        marginLeft: 12,
+    },
+    principal: {
         flex: 1,
-        padding: 10,
-        color: '#2a2f43',
-        fontWeight: 'bold'
+        height: 50,
+        backgroundColor: '#F8F8F8',
+        marginLeft: "auto",
+        borderBottomColor: '#DEDEDE',
+        borderBottomWidth: 1,
     },
-    button: {
-
+    secondary: {
+        flex: 1,
+        height: 30,
+        backgroundColor: '#F8F8F8',
+        marginLeft: "auto",
     },
-    buttonImage: {
-        width: 30,
-        height: 25
+    iconExapandPrincipal: {
+        color: '#B7B7B7',
+        fontWeight: "200",
+        fontSize: 24,
+        backgroundColor: '#F8F8F8',
+        padding: 11.8,
+        borderBottomColor: '#DEDEDE',
+        borderBottomWidth: 1,
     },
-    body: {
-        padding: 10,
-        paddingTop: 0
+    iconExapandSecondary: {
+        color: '#B7B7B7',
+        fontWeight: 'normal',
+        fontSize: 22,
+        backgroundColor: '#F8F8F8',
+        padding: 3.5,
+        paddingRight: 11
     }
 });

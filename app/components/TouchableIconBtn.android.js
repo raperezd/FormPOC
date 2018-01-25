@@ -42,10 +42,10 @@ class TouchableIconBtn extends React.Component {
 
     render() {
         return (
-            <TouchableNativeFeedback
+            <TouchableNativeFeedback style={{borderRadius: 75}}
                 onPress={this._onPressButton}
                 background={TouchableNativeFeedback.SelectableBackground()}>
-                <View style={{ backgroundColor: 'transparent' }}>
+                <View style={{ backgroundColor: 'transparent', borderRadius: 75}}>
                     <Icon name={this.props.name} style={[
                         styles.icon,
                         !!this.props.style && this.props.style

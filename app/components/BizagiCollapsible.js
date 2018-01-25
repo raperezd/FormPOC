@@ -113,9 +113,6 @@ const styles = StyleSheet.create({
         height: 30,
         backgroundColor: '#F8F8F8',
         marginLeft: "auto",
-        marginTop: 20,
-        borderTopColor: '#DEDEDE',
-        borderTopWidth: 1,
     },
     iconExapandPrincipal: {
         color: '#B7B7B7',
@@ -132,9 +129,6 @@ const styles = StyleSheet.create({
         fontSize: 22,
         backgroundColor: '#F8F8F8',
         padding: 3.5,
-        marginTop: 20,
-        borderTopColor: '#DEDEDE',
-        borderTopWidth: 1,
         paddingRight: 11
     }
 });

@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { StyleSheet, ListView } from 'react-native';
 import { Button, List } from 'native-base';
 import Icon from 'react-native-vector-icons/Feather';
-import BizagiGridItem from './BizagiGridItem';
+import {BizagiGridItem} from './BizagiGridItem';
 import datas from '../data/grid_data';
 
 const styles = StyleSheet.create({

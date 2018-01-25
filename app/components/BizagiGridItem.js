@@ -39,35 +39,44 @@ const styles = StyleSheet.create({
         color: '#B7B7B7',
         fontSize: 10,
         fontWeight: '200',
-        marginLeft:25,
+        marginLeft: 25, 
     }
 });
 
 
-export default BizagiGridItem = props => (
+const SimpleGridItem = props => (
+    <Content style={props.style}>
+        <Grid>
+            <Col style={{ width: 35, marginRight: 10 }}>
+                <Image style={{ width: 35, height: 35 }} source={props.image}></Image>
+            </Col>
+            <Col style={{ flex: 2 }}>
+                <Row>
+                    <Text style={styles.listItemTitle}>{props.productName}</Text>
+                </Row>
+                <Row>
+                    <Text style={styles.listItemSubTitleBold}>Dimensions: </Text>
+                    <Text style={styles.listItemSubTitle}>{props.dimensions}</Text>
+                </Row>
+                <Row>
+                    <Text style={styles.listItemSubTitleBold}>Deliver to: </Text>
+                    <Text style={styles.listItemSubTitle}>{props.deliverTo}</Text>
+                </Row>
+            </Col>
+            <Col style={{ flex: 1 }}>
+                <Text style={styles.listItemText}>{props.deliverTime}</Text>
+            </Col>
+        </Grid>
+    </Content>
+)
+
+const BizagiGridItem = props => (
     <ListItem style={styles.listItem} onPress={props.onPress}>
-        <Content>
-            <Grid>
-                <Col style={{ width: 35, marginRight: 10 }}>
-                    <Image style={{ width: 35, height: 35 }} source={props.image}></Image>
-                </Col>
-                <Col style={{ flex: 2 }}>
-                    <Row>
-                        <Text style={styles.listItemTitle}>{props.productName}</Text>
-                    </Row>
-                    <Row>
-                        <Text style={styles.listItemSubTitleBold}>Dimensions: </Text>
-                        <Text style={styles.listItemSubTitle}>{props.dimensions}</Text>
-                    </Row>
-                    <Row>
-                        <Text style={styles.listItemSubTitleBold}>Deliver to: </Text>
-                        <Text style={styles.listItemSubTitle}>{props.deliverTo}</Text>
-                    </Row>
-                </Col>
-                <Col style={{ flex: 1 }}>
-                    <Text style={styles.listItemText}>{props.deliverTime}</Text>
-                </Col>
-            </Grid>
-        </Content>
+        <SimpleGridItem {...props} /> 
     </ListItem>
 )
+
+module.exports = {
+    SimpleGridItem: SimpleGridItem,
+    BizagiGridItem: BizagiGridItem
+}

@@ -1,57 +1,100 @@
-import * as React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import React, { Component } from 'react';
+import { TabNavigator } from "react-navigation";
 
-const initialLayout = {
-  height: 100,
-  width: Dimensions.get('window').width,
-};
+import {
+  StyleSheet,
+  Text,
+  Dimensions,
+  ScrollView, View, Button
+} from 'react-native';
 
-const Overview = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
-const Specs = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
-const Reviews = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
+const styles = StyleSheet.create({
+  form: {
+      backgroundColor: '#FFFFFF',
+  },
+  header: {
+      backgroundColor: 'transparent'
+      //height: 81
+  },
+  headerTitle: {
+      color: '#FFF',
+      fontSize: 16,
+      fontWeight: '200'
+  },
+  headerSubTitle: {
+      color: '#FFF',
+      fontSize: 12,
+      fontWeight: '100'
+  },
+  headerBackTitle: {
+      fontSize: 16,
+      padding: 16,
+      color: '#FFF'
+  },
+  bold: {
+      fontWeight: '600'
+  }
+});
 
-export default class BizagiTab extends React.Component {
-  state = {
-    index: 0,
-    routes: [
-      { key: 'overview', title: 'Overview' },
-      { key: 'specs', title: 'Specs' },
-      { key: 'reviews', title: 'Reviews' },
-    ],
-  };
+import BizagiControl from './BizagiControl';
 
-  _handleIndexChange = index => this.setState({ index });
+const maxHeight = Dimensions.get('window').height;
 
-  _renderHeader = props => <TabBar
-    labelStyle={{color: '#295D7B'}}
-    pressColor='#DEDEDE' pressOpacity={0.3} 
-    indicatorStyle={{backgroundColor: '#295D7B'}} 
-    style={{backgroundColor: '#FFF', borderColor: '#DEDEDE', borderBottomWidth: 1}}
-    {...props} />;
+class RecentChatsScreen extends React.Component {
+  render() {
+    return <BizagiControl>
+      <View>
+        <Text style={{ fontSize: 12 }}>
+          <Text style={[styles.bold, { fontSize: 14 }]}>Dimensions / weight without the cable{'\n'}</Text>
+          <Text style={[styles.bold]}>Headphones:</Text> 7.1" H x 6.7" W x 3.2" D (8.3 oz){'\n'}
+          <Text style={[styles.bold]}>Audio cable:</Text> 47.2"{'\n'}
+          <Text style={[styles.bold]}>USB cable:</Text> 12"{'\n'}{'\n'}
+        </Text>
+      </View>
+      <View>
+        <Text style={{ fontSize: 12 }}>
+          <Text style={[styles.bold, { fontSize: 14 }]}>What’s in the box{'\n'}</Text>
+          QC35 wireless headphones II{'\n'}
+          USB charging cable{'\n'}
+          Audio cable{'\n'}
+          Carrying case{'\n'}
+          SoundLink® Mini Bluetooth speaker II{'\n'}
+          Charging cradle{'\n'}
+          Wall charger{'\n'}
+          Cable{'\n'}
+          Wireless range up to 30 ft (9 m){'\n'}
+          Battery life up to 10 hrs{'\n'}
+          Power rating: 100 – 240V{'\n'}
+          3.5 mm auxiliary{'\n'}
+          Micro-B USB port{'\n'}
+        </Text>
+      </View>
+    </BizagiControl>
+  }
+}
 
-  _renderScene = SceneMap({
-    overview: Overview,
-    specs: Specs,
-    reviews: Reviews,
-  });
+class AllContactsScreen extends React.Component {
+  render() {
+    return <Text>List of all contacts</Text>
+  }
+}
 
+const MainScreenNavigator = TabNavigator({
+  Recent: { screen: RecentChatsScreen },
+  All: { screen: AllContactsScreen },
+});
+
+
+class BizagiTab extends React.Component {
   render() {
     return (
-      <TabViewAnimated
-        style={styles.container}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onIndexChange={this._handleIndexChange}
-        initialLayout={initialLayout}
-      />
+      <View style={{ height: maxHeight - 80 }}>
+        <MainScreenNavigator navigation={this.props.navigation} />
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+BizagiTab.router = MainScreenNavigator.router;
+
+export default BizagiTab;

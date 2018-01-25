@@ -3,29 +3,37 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 
 const initialLayout = {
-  height: 0,
+  height: 100,
   width: Dimensions.get('window').width,
 };
 
-const FirstRoute = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
-const SecondRoute = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
+const Overview = () => <View style={[ styles.container, { backgroundColor: '#ff4081' } ]} />;
+const Specs = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
+const Reviews = () => <View style={[ styles.container, { backgroundColor: '#673ab7' } ]} />;
 
 export default class BizagiTab extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'first', title: 'First' },
-      { key: 'second', title: 'Second' },
+      { key: 'overview', title: 'Overview' },
+      { key: 'specs', title: 'Specs' },
+      { key: 'reviews', title: 'Reviews' },
     ],
   };
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar {...props} />;
+  _renderHeader = props => <TabBar
+    labelStyle={{color: '#295D7B'}}
+    pressColor='#DEDEDE' pressOpacity={0.3} 
+    indicatorStyle={{backgroundColor: '#295D7B'}} 
+    style={{backgroundColor: '#FFF', borderColor: '#DEDEDE', borderBottomWidth: 1}}
+    {...props} />;
 
   _renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
+    overview: Overview,
+    specs: Specs,
+    reviews: Reviews,
   });
 
   render() {

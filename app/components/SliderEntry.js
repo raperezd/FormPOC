@@ -109,7 +109,8 @@ export default class SliderEntry extends Component {
                 </View>
                 <Modal
                     visible={this.state.modalVisible}
-                    animationType={ LayoutAnimation.configureNext(CustomLayoutSpring)}
+                    //animationType={ LayoutAnimation.configureNext(CustomLayoutSpring)}
+                    animationType={"fade"}
                     transparent={true}
                     onRequestClose={() => this._closeModal()}
                 >

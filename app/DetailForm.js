@@ -194,7 +194,7 @@ class DetailView extends React.Component {
                 contentContainerCustomStyle={stylesC.sliderContentContainer}
                 loop={false}
                 loopClonesPerSide={2}
-                autoplay={true}
+                autoplay={false}
                 autoplayDelay={500}
                 autoplayInterval={3000}
                 onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index })}

@@ -19,6 +19,7 @@ import {
 
 import FirstForm from './app/FirstForm';
 import DetailView from './app/DetailView';
+import AddNew from './app/AddNew';
 import ImageHeader from './app/components/ImageHeader';
 
 const styles = StyleSheet.create({
@@ -57,7 +58,8 @@ class HomeScreen extends React.Component {
 const App = StackNavigator({
   Home: { screen: HomeScreen },
   FirstForm: { screen: FirstForm },
-  DetailView: { screen: DetailView }
+  DetailView: { screen: DetailView },
+  AddNew: { screen: AddNew }
 });
 
 export default App;

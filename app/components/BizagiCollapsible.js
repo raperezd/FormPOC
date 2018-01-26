@@ -24,12 +24,14 @@ export default class BizagiCollapsible extends React.Component {
         super(props);
         if (props.expanded) {
             this.state = {
+                h: "auto",
                 he: new Animated.Value(),
                 expanded: props.expanded,
                 icon: "chevron-down"
             };
         } else {
             this.state = {
+                h: 0,
                 he: new Animated.Value(0),
                 expanded: props.expanded,
                 icon: "chevron-right"
@@ -38,22 +40,29 @@ export default class BizagiCollapsible extends React.Component {
     }
 
     _onPress = () => {
+        // Linear with easing
+        var CustomLayoutLinear = {
+            duration: 150,
+            create: {
+                type: LayoutAnimation.Types.linear,
+                property: LayoutAnimation.Properties.opacity,
+            },
+            update: {
+                type: LayoutAnimation.Types.linear,
+            },
+        };
         if (this.state.expanded) {
             this.setState({ expanded: false, icon: "chevron-right" })
-            Animated.timing(
-                this.state.he,
-                {
-                    toValue: 0
-                }
-            ).start();
+           LayoutAnimation.configureNext(CustomLayoutLinear);
+            this.setState({
+                h: 0
+            });
         } else {
             this.setState({ expanded: true, icon: "chevron-down" })
-            Animated.timing(
-                this.state.he,
-                {
-                    toValue: "auto"
-                }
-            ).start();
+            LayoutAnimation.configureNext(CustomLayoutLinear);
+            this.setState({
+                h: "auto"
+            });
         }
     }
 
@@ -70,9 +79,9 @@ export default class BizagiCollapsible extends React.Component {
                         </View>
                     </View>
                 </TouchableOpacity>
-                {this.state.expanded && <Animated.View style={[styles.box, { height: this.state.he, backgroundColor: this.props.bgColor }]}>
+                <Animated.View style={[styles.box, { height: this.state.h, backgroundColor: this.props.bgColor }]}>
                     {this.props.children}
-                </Animated.View>}
+                </Animated.View>
             </View>
         );
     }

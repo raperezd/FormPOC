@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, Modal, Button, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Modal, Button, StyleSheet,LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from './styles/BizagiCarouselStyles.style';
@@ -26,17 +26,17 @@ const stylesModal = StyleSheet.create({
     },
     title: {
         flex: 1,
-        borderTopLeftRadius: 10,       
+        borderTopLeftRadius: 10,
         color: "#555555",
         fontSize: 14,
         fontWeight: "bold",
         padding: 10
     },
     closeButton: {
-        borderTopRightRadius: 10,      
+        borderTopRightRadius: 10,
         padding: 10,
     },
-    image:{
+    image: {
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10
     }
@@ -84,6 +84,18 @@ export default class SliderEntry extends Component {
 
     render() {
         const { data: { title, subtitle, illustration }, even } = this.props;
+        var CustomLayoutSpring = {
+            duration: 500,
+            create: {
+                type: LayoutAnimation.Types.spring,
+                property: LayoutAnimation.Properties.scaleXY,
+                springDamping: 2,
+            },
+            update: {
+                type: LayoutAnimation.Types.spring,
+                springDamping: 2,
+            },
+        };
 
         return (
             <TouchableOpacity
@@ -97,7 +109,7 @@ export default class SliderEntry extends Component {
                 </View>
                 <Modal
                     visible={this.state.modalVisible}
-                    animationType={'fade'}
+                    animationType={ LayoutAnimation.configureNext(CustomLayoutSpring)}
                     transparent={true}
                     onRequestClose={() => this._closeModal()}
                 >

@@ -3,16 +3,16 @@ import { colors } from './BizagiCarouselIndex.style';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
-function wp (percentage) {
+function wp(percentage) {
     const value = (percentage * viewportWidth) / 100;
     return Math.round(value);
 }
 
-const slideHeight = 200;
-const slideWidth = wp(28);
-const itemHorizontalMargin = wp(0.5);
+const slideHeight = 150;
+const slideWidth = wp(27);
+const itemHorizontalMargin = wp(0.3);
 
-export const sliderWidth = viewportWidth - 300;
+export const sliderWidth = viewportWidth - wp(50);
 export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
 const entryBorderRadius = 10;
@@ -22,17 +22,16 @@ export default StyleSheet.create({
         width: itemWidth,
         height: slideHeight,
         paddingHorizontal: itemHorizontalMargin,
-        paddingBottom: 18 // needed for shadow
+        paddingBottom: 18
     },
     imageContainer: {
         flex: 1,
-        backgroundColor: 'transparent',
-        marginTop:20,
         borderTopLeftRadius: entryBorderRadius,
-        borderTopRightRadius: entryBorderRadius
+        borderTopRightRadius: entryBorderRadius,
+        borderBottomLeftRadius: entryBorderRadius,
+        borderBottomRightRadius: entryBorderRadius,
     },
     imageContainerEven: {
-        backgroundColor: colors.black
     },
     image: {
         ...StyleSheet.absoluteFillObject,
@@ -40,6 +39,8 @@ export default StyleSheet.create({
         borderRadius: Platform.OS === 'ios' ? entryBorderRadius : 0,
         borderTopLeftRadius: entryBorderRadius,
         borderTopRightRadius: entryBorderRadius,
+        borderBottomLeftRadius: entryBorderRadius,
+        borderBottomRightRadius: entryBorderRadius,
     },
     // image's border radius is buggy on ios; let's hack it!
     radiusMask: {
@@ -48,38 +49,5 @@ export default StyleSheet.create({
         left: 0,
         right: 0,
         height: entryBorderRadius,
-    },
-    radiusMaskEven: {
-        backgroundColor: colors.black
-    },
-    textContainer: {
-        justifyContent: 'center',
-        paddingTop: 20 - entryBorderRadius,
-        paddingBottom: 20,
-        paddingHorizontal: 16,
-        backgroundColor: 'white',
-        borderBottomLeftRadius: entryBorderRadius,
-        borderBottomRightRadius: entryBorderRadius
-    },
-    textContainerEven: {
-        backgroundColor: colors.black
-    },
-    title: {
-        color: colors.black,
-        fontSize: 13,
-        fontWeight: 'bold',
-        letterSpacing: 0.5
-    },
-    titleEven: {
-        color: 'white'
-    },
-    subtitle: {
-        marginTop: 6,
-        color: colors.gray,
-        fontSize: 12,
-        fontStyle: 'italic'
-    },
-    subtitleEven: {
-        color: 'rgba(255, 255, 255, 0.7)'
     }
 });

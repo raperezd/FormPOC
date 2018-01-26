@@ -27,7 +27,7 @@ function wp(percentage) {
 }
 
 const slideHeight = viewportHeight * 0.4;
-const slideWidth = wp(78);
+const slideWidth = wp(28);
 const itemHorizontalMargin = wp(0.5);
 
 export const sliderWidth = viewportWidth;
@@ -69,38 +69,7 @@ class DetailView extends React.Component {
 
     state = {
         sliderWidth: 100,
-        itemWidth: 100/* [
-            {
-                title: 'Beautiful and dramatic Antelope Canyon',
-                subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-                illustration: 'http://i.imgur.com/UYiroysl.jpg'
-            },
-            {
-                title: 'Earlier this morning, NYC',
-                subtitle: 'Lorem ipsum dolor sit amet',
-                illustration: 'http://i.imgur.com/UPrs1EWl.jpg'
-            },
-            {
-                title: 'White Pocket Sunset',
-                subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-                illustration: 'http://i.imgur.com/MABUbpDl.jpg'
-            },
-            {
-                title: 'Acrocorinth, Greece',
-                subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-                illustration: 'http://i.imgur.com/KZsmUi2l.jpg'
-            },
-            {
-                title: 'The lone tree, majestic landscape of New Zealand',
-                subtitle: 'Lorem ipsum dolor sit amet',
-                illustration: 'http://i.imgur.com/2nCt3Sbl.jpg'
-            },
-            {
-                title: 'Middle Earth, Germany',
-                subtitle: 'Lorem ipsum dolor sit amet',
-                illustration: 'http://i.imgur.com/lceHsT6l.jpg'
-            }
-        ]*/
+        itemWidth: 100
     }
 
     _renderItemWithParallax({ item, index }, parallaxProps) {
@@ -153,17 +122,12 @@ class DetailView extends React.Component {
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
                     hasParallaxImages={true}
-                    firstItem={4} 
-                    inactiveSlideScale={0.94}
+                    firstItem={0}
+                    inactiveSlideScale={0.85}
                     inactiveSlideOpacity={0.5}
                     enableMomentum={false}
                     containerCustomStyle={stylesC.slider}
                     contentContainerCustomStyle={stylesC.sliderContentContainer}
-                    loop={false}
-                    loopClonesPerSide={2}
-                    autoplay={true}
-                    autoplayDelay={500}
-                    autoplayInterval={3000}
                     onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index })}
                 />
                 <BizagiCounter></BizagiCounter>

@@ -3,44 +3,46 @@ import { View, Text, Image, TouchableOpacity, Modal, Button, StyleSheet } from '
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from './styles/BizagiCarouselStyles.style';
-import IconEt from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/Feather';
+
 const stylesModal = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    modalContainer: {
+    modalOverlay: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
-    innerContainer: {
-        alignItems: 'center',
-        width: 350,
-        height: 350,
-        margin: 20
+
+    modalContainer: {
+        backgroundColor: '#FBFBFB',
+        borderRadius: 10,
+        elevation: 2
     },
+
     header: {
         flexDirection: "row",
+        borderTopStartRadius: 10,
+        borderTopEndRadius: 10,
     },
     title: {
         flex: 1,
-        height: 50,
-        backgroundColor: '#FBFBFB',
+        borderTopLeftRadius: 10,       
         color: "#555555",
         fontSize: 14,
         fontWeight: "bold",
-        padding: 15,
-        marginLeft: 2,
+        padding: 10
     },
     closeButton: {
-        backgroundColor: '#FBFBFB',
-        padding: 18.5,
+        borderTopRightRadius: 10,      
+        padding: 10,
+    },
+    image:{
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10
     }
 });
-export default class SliderEntry extends Component {
 
+export default class SliderEntry extends Component {
     static propTypes = {
         data: PropTypes.object.isRequired,
         even: PropTypes.bool,
@@ -73,7 +75,7 @@ export default class SliderEntry extends Component {
     }
 
     _openModal(as) {
-        this.setState({ modalVisible: true});
+        this.setState({ modalVisible: true });
     }
 
     _closeModal() {
@@ -81,7 +83,7 @@ export default class SliderEntry extends Component {
     }
 
     render() {
-        const { data: { title, subtitle }, even } = this.props;
+        const { data: { title, subtitle, illustration }, even } = this.props;
 
         return (
             <TouchableOpacity
@@ -95,26 +97,24 @@ export default class SliderEntry extends Component {
                 </View>
                 <Modal
                     visible={this.state.modalVisible}
-                    animationType={'slide'}
+                    animationType={'fade'}
+                    transparent={true}
                     onRequestClose={() => this._closeModal()}
                 >
-                    <View style={stylesModal.modalContainer}>
-                        <View style={stylesModal.innerContainer}>
+                    <View style={stylesModal.modalOverlay}>
+                        <View style={stylesModal.modalContainer}>
                             <View style={stylesModal.header}>
-                                <Text style={stylesModal.title}>Alguna joda</Text>
-                                <View>
-                                    <TouchableOpacity
-                                        onPress={() => this._closeModal()}
-                                        title="X"
-                                        style={stylesModal.closeButton}
-                                    >
-                                        <IconEt name="squared-cross" />
-                                    </TouchableOpacity>
-                                </View>
+                                <Text style={stylesModal.title}></Text>
+                                <TouchableOpacity
+                                    onPress={() => this._closeModal()}
+                                    style={stylesModal.closeButton}
+                                >
+                                    <Icon size={23} name="x" />
+                                </TouchableOpacity>
                             </View>
                             <Image
-                                source={{ uri: "https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_25_acoustic_noise_cancelling_headphones-apple_devices/product_silo_images/qc25_apple_black_EC_hero_010716.psd/_jcr_content/renditions/cq5dam.web.320.320.png" }}
-                                style={[styles.image, { width: 100, height: 100 }]}
+                                source={{ uri: illustration }}
+                                style={[stylesModal.image, { width: 200, height: 200 }]}
                             />
                         </View>
                     </View>

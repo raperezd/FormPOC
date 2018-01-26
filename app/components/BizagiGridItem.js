@@ -48,7 +48,7 @@ const SimpleGridItem = props => (
     <Content style={props.style}>
         <Grid>
             <Col style={{ width: 35, marginRight: 10 }}>
-                <Image style={{ width: 35, height: 35 }} source={props.image}></Image>
+                <Image style={{ width: 35, height: 35 }} source={props.images[0]}></Image>
             </Col>
             <Col style={{ flex: 2 }}>
                 <Row>

@@ -69,8 +69,7 @@ class DetailView extends React.Component {
 
     state = {
         sliderWidth: 100,
-        itemWidth: 100,
-        entries: [
+        itemWidth: 100/* [
             {
                 title: 'Beautiful and dramatic Antelope Canyon',
                 subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
@@ -101,7 +100,7 @@ class DetailView extends React.Component {
                 subtitle: 'Lorem ipsum dolor sit amet',
                 illustration: 'http://i.imgur.com/lceHsT6l.jpg'
             }
-        ]
+        ]*/
     }
 
     _renderItemWithParallax({ item, index }, parallaxProps) {
@@ -126,6 +125,9 @@ class DetailView extends React.Component {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
         this.params = params;
+        this.entries = this.params.images.map((el)=> {
+            return {illustration: el.uri}; 
+        });
         return {
             headerStyle: styles.header,
             headerTitleStyle: styles.headerTitle,
@@ -139,19 +141,19 @@ class DetailView extends React.Component {
         }
     }
 
-    render() {
+    render() {  
         const { navigate } = this.props.navigation;
-        return (
+        return ( 
             <ScrollView style={styles.form}>
                 <SimpleGridItem {...params} style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 7, paddingBottom: 7 }} />
                 <Carousel
                     ref={(c) => { if (!this.state.slider1Ref) { this.setState({ slider1Ref: c }); } }}
-                    data={this.state.entries}
+                    data={entries} 
                     renderItem={this._renderItemWithParallax}
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
                     hasParallaxImages={true}
-                    firstItem={4}
+                    firstItem={4} 
                     inactiveSlideScale={0.94}
                     inactiveSlideOpacity={0.5}
                     enableMomentum={false}

@@ -143,6 +143,7 @@ class DetailView extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <ScrollView style={styles.form}>
+                <SimpleGridItem {...params} style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 7, paddingBottom: 7 }} />
                 <Carousel
                     ref={(c) => { if (!this.state.slider1Ref) { this.setState({ slider1Ref: c }); } }}
                     data={this.state.entries}
@@ -165,34 +166,6 @@ class DetailView extends React.Component {
                 />
                 <BizagiCounter></BizagiCounter>
                 <BizagiTab />
-                <BizagiControl>
-                    <View>
-                        <Text style={{ fontSize: 12 }}>
-                            <Text style={[styles.bold, { fontSize: 14 }]}>Dimensions / weight without the cable{'\n'}</Text>
-                            <Text style={[styles.bold]}>Headphones:</Text> 7.1" H x 6.7" W x 3.2" D (8.3 oz){'\n'}
-                            <Text style={[styles.bold]}>Audio cable:</Text> 47.2"{'\n'}
-                            <Text style={[styles.bold]}>USB cable:</Text> 12"{'\n'}{'\n'}
-                        </Text>
-                    </View>
-                    <View>
-                        <Text style={{ fontSize: 12 }}>
-                            <Text style={[styles.bold, { fontSize: 14 }]}>What’s in the box{'\n'}</Text>
-                            QC35 wireless headphones II{'\n'}
-                            USB charging cable{'\n'}
-                            Audio cable{'\n'}
-                            Carrying case{'\n'}
-                            SoundLink® Mini Bluetooth speaker II{'\n'}
-                            Charging cradle{'\n'}
-                            Wall charger{'\n'}
-                            Cable{'\n'}
-                            Wireless range up to 30 ft (9 m){'\n'}
-                            Battery life up to 10 hrs{'\n'}
-                            Power rating: 100 – 240V{'\n'}
-                            3.5 mm auxiliary{'\n'}
-                            Micro-B USB port{'\n'}
-                        </Text>
-                    </View>
-                </BizagiControl>
             </ScrollView>
         );
     }

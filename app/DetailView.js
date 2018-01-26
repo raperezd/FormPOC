@@ -41,13 +41,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
     },
     header: {
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
         //height: 81
     },
     headerTitle: {
         color: '#FFF',
         fontSize: 16,
-        fontWeight: '200'
+        fontWeight: '200',
+        alignItems: 'center',
     },
     headerSubTitle: {
         color: '#FFF',
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     },
     headerBackTitle: {
         fontSize: 16,
-        padding: 16,
+        padding: 0,
         color: '#FFF'
     },
     bold: {
@@ -99,9 +100,10 @@ class DetailView extends React.Component {
         });
         return {
             headerStyle: styles.header,
-            headerTitleStyle: styles.headerTitle,
-            headerLeft: <TouchableIconBtn style={{ color: '#FFF' }} size={22} name="arrow-left" onPress={() => navigation.goBack(null)}></TouchableIconBtn>,
-            headerTitle: <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', paddingTop: 5, paddingBottom: 5 }}>
+            headerTitleStyle: styles.headerTitle, 
+            headerLeft: null,
+            headerRight: <TouchableIconBtn style={{ color: '#FFF' }} size={22} name="x" onPress={() => navigation.goBack(null)}></TouchableIconBtn>,
+            headerTitle: <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', paddingLeft: 15, paddingTop: 5, paddingBottom: 5 }}>
                 <Text style={styles.headerTitle}>Supplies</Text>
                 <Text style={styles.headerSubTitle}>{params.productName}</Text>
             </View>,

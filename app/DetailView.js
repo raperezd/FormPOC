@@ -27,7 +27,7 @@ function wp(percentage) {
 }
 
 const slideHeight = viewportHeight * 0.4;
-const slideWidth = wp(78);
+const slideWidth = wp(28);
 const itemHorizontalMargin = wp(0.5);
 
 export const sliderWidth = viewportWidth;
@@ -151,17 +151,12 @@ class DetailView extends React.Component {
                     sliderWidth={sliderWidth}
                     itemWidth={itemWidth}
                     hasParallaxImages={true}
-                    firstItem={4}
-                    inactiveSlideScale={0.94}
+                    firstItem={0}
+                    inactiveSlideScale={0.85}
                     inactiveSlideOpacity={0.5}
                     enableMomentum={false}
                     containerCustomStyle={stylesC.slider}
                     contentContainerCustomStyle={stylesC.sliderContentContainer}
-                    loop={false}
-                    loopClonesPerSide={2}
-                    autoplay={true}
-                    autoplayDelay={500}
-                    autoplayInterval={3000}
                     onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index })}
                 />
                 <BizagiCounter></BizagiCounter>

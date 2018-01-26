@@ -13,13 +13,14 @@ import {
 const styles = StyleSheet.create({
     card: {
         height: 60,
-        margin: 15,
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 10,
+        elevation: 2,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "#F8F8F8",
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: 'transparent'
+        borderRadius: 5
     },
     icon: {
         fontSize: 25,

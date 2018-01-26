@@ -16,7 +16,6 @@ import BizagiExtendedText from './components/BizagiExtendedText';
 import BizagiGrid from './components/BizagiGrid';
 import ImageHeader from './components/ImageHeader';
 import TouchableIconBtn from './components/TouchableIconBtn';
-import BizagiCard from './components/BizagiCard';
 import BizagiCollapsible from './components/BizagiCollapsible';
 
 
@@ -68,10 +67,9 @@ class FirstForm extends React.Component {
                     <View style={{ height: "auto" }}>
                         <BizagiCollapsible expanded={true} bgColor={"#fff"} title={"Office supplies request"} type={"title"}>
                             <View>
-                                <BizagiCollapsible expanded={true} bgColor={"#DEDEDE"} title={"Supplies to request"} type={"subTitle"}>
-                                    <BizagiCard label="Add suplies to request."/>
-                                    <BizagiGrid onItemSelected={(item) => navigate('DetailView', {...item}) }/>
-                                </BizagiCollapsible>
+                                <BizagiGrid
+                                    onItemSelected={(item) => navigate('DetailView', { ...item })}
+                                />
                             </View>
                             <BizagiControl label='If you are requesting an asset replacement, please write down the reason' />
                             <BizagiControl label={<Text style={{ fontSize: 12, fontWeight: '600' }}>Replacement reason</Text>}>

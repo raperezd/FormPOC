@@ -32,7 +32,6 @@ export default StyleSheet.create({
         borderBottomRightRadius: entryBorderRadius,
     },
     imageContainerEven: {
-        backgroundColor:"red",
     },
     image: {
         ...StyleSheet.absoluteFillObject,

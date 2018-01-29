@@ -1,3 +1,6 @@
 module.exports = {
-    entry: './app.js'
+    entry: './index.web.js',
+    output:{
+        filename:'./bundle.js'
+    }
 };
